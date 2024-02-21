@@ -40,22 +40,8 @@ The function is called _responseHack_.
 This is code for adding a sessionID argument for GETs of the target page.  Aiding in testing of Sessionization configuration.</br>
 The function is called in _OnBeforeRequest_ and the function name is _addSessionIDtoTargetGETonRequest_.
 
-##  Beacon Hack
-Modification of headers to work around a (now closed) Beacon support issue.</br>
-The function is called _DiscoBeaconFix_.
-
-##  Worker Hack
-
 ##  SessionID Column
 No configuration needed, enabled on initial configuration of Fiddler.
-
-##  Impersonate Tealeaf Headers
-Changes Discover headers over to corresponding Tealeaf headers.</br>
-The function is _impersonateTealeafRequest_.
-
-##  Impersonate Discover Headers
-Changes Telead headers over to corresponding Discover headers.</br>
-The function is _impersonateDiscoverRequest_.
 
 ##  Shorthand Column
 Logic is called from _OnBeforeRequest_, compresses a version of each UI Post into the Comments column for ease of use.</br>
@@ -69,20 +55,21 @@ Logic is presently wholly contained in the _OnBeforeRequest_ function.
 Configure IFs for the relevant domains such that sessions will stitch across domain.</br>
 Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
+##  Worker Hack
+
+##  Impersonate Tealeaf Headers
+Changes Discover headers over to corresponding Tealeaf headers.</br>
+The function is _impersonateTealeafRequest_.
+
+##  Impersonate Discover Headers
+Changes Telead headers over to corresponding Discover headers.</br>
+The function is _impersonateDiscoverRequest_.
+
 ## Reverse Proxy configuration
 Handy for redirecting an existing POST to a different target page/domain.</br>
 Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
-
-
-
-
-
-
-
-
-
-
-
-
+##  Beacon Hack
+Modification of headers to work around a (now closed) Beacon support issue.</br>
+The function is called _DiscoBeaconFix_.
 
