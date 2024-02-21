@@ -12,6 +12,7 @@ The function is called SaveStaticContentOnBeforeResponse.
 ##  Toolset Identification
 This works with the Comments column (and color highlighting).  No configuration needed.</br>
 Function list currently is:</br>
+highlightAllResponse</br>
 highlightDiscoverResponse</br>
 highlightUtagResponse</br>
 highlightQualtricsResponse</br>
