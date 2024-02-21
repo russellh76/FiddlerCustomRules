@@ -55,6 +55,9 @@ Logic is presently wholly contained in the _OnBeforeRequest_ function.
 Configure IFs for the relevant domains such that sessions will stitch across domain.</br>
 Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
+##  Target page chang
+Redirect POSTS to a different target page domain/url.
+
 ##  Worker Hack
 
 ##  Impersonate Tealeaf Headers
@@ -66,7 +69,7 @@ Changes Telead headers over to corresponding Discover headers.</br>
 The function is _impersonateDiscoverRequest_.
 
 ## Reverse Proxy configuration
-Handy for redirecting an existing POST to a different target page/domain.</br>
+Handy for redirecting an existing POST to a different target page/domain or similar.</br>
 Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
 ##  Beacon Hack
