@@ -27,7 +27,6 @@ _highlightUserReplayAnalyticsResponse_</br>
 _highlightTealeafSaaSResponse_</br>
 _highlightTealeafOnPremResponse_</br>
 _highlightDummyTargetResponse_</br>
-_highlightDiscoverResponse_</br>
 _highlightClickTaleResponse_</br>
 _highlightGlassBoxResponse_</br>
 _highlightSnowPlowResponse_</br>
