@@ -1,0 +1,23 @@
+net start DC_ReplayServer
+:start
+@echo off
+Color 2F
+echo.
+echo If this window is green the REPLAY service should be running.
+echo This window is red while the REPLAY service is restarting.
+echo.
+echo ---------- Hit any key to restart REPLAY service -----------
+echo.
+pause
+Color 4F
+cls
+@echo on
+net stop DC_ReplayServer
+net start DC_ReplayServer
+@echo off
+echo Replay Service restarted
+echo %time% %date%
+goto start
+
+
+

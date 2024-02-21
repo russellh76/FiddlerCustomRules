@@ -1,0 +1,2 @@
+javascript:var sid=document.cookie.substring(document.cookie.indexOf("TLTSID="));if (sid.indexOf("TLTSID=")!=-1){sid=sid.replace("TLTSID=","");sid=sid.substring(0,sid.indexOf(";"));    var dummy = document.createElement("textarea");    document.body.appendChild(dummy);    dummy.value = sid;    dummy.select();    document.execCommand("copy");    document.body.removeChild(dummy);    alert(sid+" copied to clipboard");}else{    alert("No TLTSID cookie present");}
+

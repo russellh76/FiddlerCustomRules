@@ -1,0 +1,754 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML><HEAD><TITLE>Connected</TITLE>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name="copyright" content="Copyright � 2006-2007 Excitant Systems inc., All Rights Reserved">
+<meta name="author" content="Russell E. Hogg">
+<meta content=Ascii-Animation name=Description>
+<meta content="Visual, Ascii-Art, Ascii-Animation, Ascii, Animation, Connectivity-check" name=KeyWords>
+<!-- animation courtesy of http://www.romanm.ch -->
+<!-- I borrowed much of this from others, such is web development -->
+</HEAD>
+<STYLE TYPE="text/css">
+<!---
+.weblogsmallprint      {  font-family: Arial, Helvetica, sans-serif; font-size: xx-small; text-decoration: none; color: #000000}
+pre                    {  font-size: 2px; color: #000000}
+--->
+</STYLE>
+<script language="javascript">
+var xmlhttp=false;
+var URL="";
+var inc=0;
+var method="GET";
+    
+var testDelay=30000;  // default to 30 seconds
+var	frameDelay=80;    // default to 80 milliseconds
+//console.log("testDelay: "+testDelay);
+console.log("seconds: ["+getParameterByName('seconds')+"]");
+console.log("fontsize: ["+getParameterByName('fontsize')+"]");
+console.log("framedelay: ["+getParameterByName('framedelay')+"]");
+console.log("method: ["+getParameterByName('method')+"]");
+
+
+if (getParameterByName('seconds')!=null){
+    if (getParameterByName('seconds').length>0){
+      if (!isNaN(getParameterByName('seconds'))) {
+        testDelay = 1000*Number(getParameterByName('seconds')); 
+        console.log("testDelay set to "+getParameterByName('seconds'));
+      }
+    }
+}
+
+if (getParameterByName('method')!=null){
+    if (getParameterByName('method').toString().toUpperCase().indexOf("H")>-1){
+        method="HEAD";
+    }
+    if (getParameterByName('method').toString().toUpperCase().indexOf("G")>-1){
+        method="GET";
+    }
+}    
+    
+if (getParameterByName('framedelay')!=null){
+    if (getParameterByName('framedelay').length>0){
+      if (!isNaN(getParameterByName('framedelay'))) {
+        frameDelay = Number(getParameterByName('framedelay')); 
+        console.log("frameDelay set to "+getParameterByName('framedelay'));
+      }
+    }
+}
+
+var now = new Date();
+var hour = ("00" + now.getHours()).slice(-2);
+var minute = ("0" + now.getMinutes()).slice(-2);
+var second = ("0" + now.getSeconds()).slice(-2);
+var monthnumber = ("0" + (now.getMonth()+1)).slice(-2);
+var monthday = ("0" + now.getDate()).slice(-2);
+var year = now.getFullYear();
+
+function framecount(){
+  for (let i = 1; i < 99; i++) {
+    if (document.getElementById("text"+i)!==null) {
+      max_pics=i;
+    }
+  }
+  return max_pics;
+}
+       
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+    
+function test() 
+{
+ now = new Date();
+ hour = ("00" + now.getHours()).slice(-2);
+ minute = ("0" + now.getMinutes()).slice(-2);
+ second = ("0" + now.getSeconds()).slice(-2);
+ monthnumber = ("0" + (now.getMonth()+1)).slice(-2);
+ monthday = ("0" + now.getDate()).slice(-2);
+ year = now.getFullYear();
+    
+ xmlhttp=null;
+ xmlhttp=false;
+
+ if (!xmlhttp && typeof XMLHttpRequest!='undefined') 
+ {
+  	try {
+  		xmlhttp = new XMLHttpRequest();
+  	} catch (e) {
+  		xmlhttp=false;
+  	}
+ }
+ if (!xmlhttp && window.createRequest) 
+ {
+  	try {
+  		xmlhttp = window.createRequest();
+  	} catch (e) {
+  		xmlhttp=false;
+  	}
+ }
+
+ URL = location.href;
+ if (URL.indexOf("?")>0){
+   URL=URL+"&";
+ }
+ else {
+   URL=URL+"?";
+ }
+ inc=inc+1;
+ URL = URL + "ReqDate=" + year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + "&count=" + inc;
+ 
+ console.log("URL: "+URL);
+ try
+ {
+   xmlhttp.timeout = testDelay-1000;  //timeout is 1 second less than test delay
+   //xmlhttp.open("GET", URL, true);
+   //xmlhttp.open("HEAD", URL, true);
+   xmlhttp.open(method, URL, true);
+ }
+ catch(ww)
+ {
+   console.log("ERROR: "+year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + " count: " + inc+" "+ww.message+" (Note: This application won't function locally.)");   // IE local condition
+ }
+ xmlhttp.onreadystatechange=function() {
+ //console.log(xmlhttp.readyState);
+ if (xmlhttp.readyState==4) 
+ {
+   try{
+     if (xmlhttp.status==200) {  // success condition
+       if (!run){  //reconnect state
+         setTimeout("show()",frameDelay);
+         run=true;
+         document.title="Re-Connected";
+  	     console.log(year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + " count: " + inc+" Connection re-established");
+       }
+     }
+     else if (xmlhttp.status==404) {   //404 condition
+       run=false;
+       console.log(year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + " count: " + inc+" ERROR: 404");
+     }
+     else if (xmlhttp.status==12029) {  //IE disconnect condition
+       run=false;
+       console.log(year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + " count: " + inc+" ERROR: 12029 IE Disconnect condition");
+     }   
+     else 
+     { 
+       // catch all error condition
+       run=false;
+       document.title="ERROR";
+       console.log(year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + " count: " + inc+" ERROR: xmlhttp.status:"+xmlhttp.status + " (Note: This application won't function locally.)");   // FF local condition
+     }
+   }
+   catch(e){
+     if (e.message.indexOf("NS_ERROR_NOT_AVAILABLE") > -1){  //FF disconnect condition
+         run=false;
+         document.title="ERROR";
+         console.log(year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + " count: " + inc+" ERROR: NS_ERROR_NOT_AVAILABLE (FF disconnect condition)");
+     }
+   }
+  }
+ }
+ try
+ {
+   xmlhttp.send(null)
+   setTimeout("test()",testDelay);  
+ }
+ catch(ee)
+ {
+   console.log(year + "/" + monthnumber + "/" + monthday + "_" + hour + ":" + minute + ":" + second + "_test" + inc+" ERROR: "+ee.message+" (Note: This application won't function locally.)");   // IE local condition
+   run = false;
+   document.title="ERROR";
+ }
+}
+
+setTimeout("test()",testDelay);
+</script>
+
+
+<script language="javascript">
+/***** initialize global film variables ******/
+
+var	max_pics=99; // <---- total number of pictures in film
+//var	frameDelay=80;    // <---- delay after each frame //moved up to work with querystring
+//can I determine the frame count programatically?
+//setTimeout("framecount();",1000);
+console.log("max_pics: "+max_pics);
+    
+/***** initialize anim screen position (in pixels) *****/
+var	top=60;     // <---- window position top
+var	left=8;      // <---- window position left
+var	width=300;   // <---- window width
+var	height=187;  // <---- window height
+
+/***** initialize anim control variables *****/
+var	posi=0;      // <---- actual picture position (frame counter)
+var	prev=1;      // <---- previous picture number
+var	run=true;    // <---- boolean : true (play) or !true (pause)
+
+/***** initialize style sheets ****/
+document.write("<"+"style type='text/css'><"+"!-- ");
+for (i=0;i<=max_pics;i++) document.write("#text"+i+" {position:absolute; left:"+left+"px; top:"+top+"px; width:"+width+"px; height:"+height+"px; z-index:"+i+"; visibility:hidden}");
+document.write("--"+"><"+"/style>");
+
+/******* browser detect ******/
+with(navigator) {
+	Browser=appName;
+	Version=parseInt(appVersion.charAt(0));
+} //document.write(Browser+" "+Version+" : ");
+
+/******* browser config ******/
+if (document.layers) {
+	var doc = 'document.';
+	var vis = '.visibility';
+	var bsr = "Ns4";
+}
+else
+if (document.all) {
+	var doc = 'document.all.';
+	var vis = '.style.visibility';
+	var bsr = "Ie4";
+}
+else
+if (document.getElementById) {
+	var doc = 'document.getElementById(\"';
+	var vis = '\").style.visibility';
+	var bsr = "Ns6";
+}
+else {
+	document.write("<"+"h2><"+"font color='#888888'>This animation requires a Mozilla 4 Browser minimum!<"+"/font><"+"/h2>");
+}
+
+/******* animation module ******/
+function show() {
+
+  // process a fontsize argument
+  if (getParameterByName('fontsize')!=null){
+    if (getParameterByName('fontsize').length>0){
+      if (!isNaN(getParameterByName('fontsize'))) {
+	//console.log("length: "+document.getElementsByTagName("pre").length);
+	for (let i = 0; i < document.getElementsByTagName("pre").length; i++) {
+	  //console.log(document.getElementsByTagName("pre").length);
+  	  document.getElementsByTagName("pre")[i].style.fontSize=Number(getParameterByName('fontsize'));
+	}
+      }
+    }
+  }
+
+  if (run) {
+	  posi=posi+1;
+	  if (posi>max_pics) posi=1;
+	  eval(doc + 'text' + prev + vis + ' = "hidden"');
+	  eval(doc + 'text' + posi + vis + ' = "visible"');
+	  prev=posi;
+      setTimeout("show()",frameDelay);
+  }
+}
+</script>
+<BODY bgColor=#ffffff onload="framecount();show();">
+<FONT face="Courier New, Courier, mono" color=#000000 size=1>
+Connectivity test QueryString arguments (all lowercase): <br>
+seconds: How many seconds to wait between each test (default 30). <br>
+fontsize: Font size of ASCII art animation (default is 1). <br>
+framedelay: How many milliseconds between frames (default 80). <br>
+method: which method are test requests to use. GET or HEAD (default GET). <br>
+GET requests will be captured by Discover/Tealeaf. HEAD requests will be ignored. <br>
+</FONT>
+<FONT face="Courier New, Courier, mono" color=#000000 size=1><!-- frames --><!-- these pictures created by Mic Barendsz --><!-- each frame has the same number of lines --></FONT>
+<DIV id=text1><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     ST
+                     TTSRRRRssR
+                    TRTSsssssR
+                  TRsssssRsssss
+                RsssRRsssssRSRsRT
+              SSsRRsRRRS      TsRT
+             TRT               SSsT
+                                TRSR
+                                  RssR
+                                   RRssRS
+                                     RsssSRS    RRR
+                                        TRSssssssssssRsRRS
+                                       TRRRRRRRRssssssSsssssRR
+                                     TRRRsRRRRRRRRssssssRRsssssRR
+                                   TRRRRRRRRRRRRSRRRRSSsSRsssssssRR
+                                  RRRRRRRRRRRRRRT         TRsssssssR
+                                TRRRRRRRRRSRRR            TRRsssssssS
+                               RSsRRRSRRRSRRR             STRRsssssssT
+                               RRRRRRRSRRT                 T  RssssssR
+                               RRRSRSRSRR                     RRssssssR
+                             TRRRRRRRRT                       TRRsssssRT
+                            TSRRRRRRRT                         SRssssssT
+                            RsRRRRRR                           TRssssssR
+                            SRRRRRT                             RssssssR
+                            RRRRRR                              TRsssssT
+                           TRRRSR                                RsssssT
+                           RRSRR                                 RsssssT
+                          TSRRR                                  RRsssR
+                          TSRRR                                  sRsssT
+                          TSRRR                                  sRssR
+                           RRRT                                  sRssT
+                           RRR                                   Rsss
+                           TRR                                  TRssR
+                            RR                                 TRssT
+                            RR                                 RRsR
+                                                              RRRR
+                                                              RRT
+                                                             RR
+
+</PRE></DIV>
+<DIV id=text2><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 TAT
+                     T
+                 R T RTR
+               TRTTTATTT
+              RTTTTTTRTRRT                TRRTTTRAAT
+            TRTTARTTTT  RTTTRRRAAAAAARRATTTTAAAATTTTTTRRRRT
+            RTRAART        RRATTTTTTAARRRRRRRRRRTTTTTTTTTTRRRR
+           RRR                 A ARRRRRRRRRRRRRRT  ARRAAARRTRRRRRRR
+                             RRRTRRRRRRARARRR             RTRRRRRRRRRA
+                            RRRRRRRRRRRRR                           ARRAT
+                          ATRRRRARRRRT                                ARRTR
+                         RRRRARRRRR                                     RRRR
+                        RRARRRRR                                          RRTRT
+                      TRRRARRRR                                            RRTA
+                     ARRRRRA                                                 RRR
+                     RRRARR                                                   RRAT
+                    RRRRRT                                                     RRR
+                   RRRRR                                                       TRTT
+                  RRRRRA                                                        RRRT
+                 RRRRR                                                           ATR
+                 ARRA                                                             RTT
+                 RRRR                                                             RRR
+                 RRR                                                              ARR
+                 RRA                                                              TRR
+                 RR                                                               TRR
+                 RA                                                               RRT
+                 T                                                                R
+
+</PRE></DIV>
+<DIV id=text3><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  RR     RR
+                  RRRRRRR                     RRRRR
+                 RRRRRRRR    RRRR        RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+                RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+              RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR                RRRRRR
+             RRRRRRRRRRRR   RRRRRRRRRR             RRRRRRRRRRRRRR                    RRR
+            RRRRRRRRR                                   RRR  RRRR                      RR
+           RRRRRR                                                                        RR
+            RR                                                                             R
+           RR                                                                               R
+         RR                                                                                 RR
+        RRR                                                                                 RR
+       RR                                                                                   RR
+      R                                                                                     RR
+                                                                                             R
+
+</PRE></DIV>
+<DIV id=text4><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                   S
+                               SSRT                              RSRRRRSSSRRSS
+                SRRSRRRRRRSRRRRRRsRT                         RRRRRRRRSRRRSRSRRRRRRS
+             RRRRRRSRSRRSRRRRRRSRSRRRRRRRSSSRRssssRSSRRRRRSSRRRRRRRRRRRSRRRRRRRRRRRRRRS
+          RRRRRRRRRRTT     TTSRRRRRRRSRRRRRRssssssssssRRRRRRRRRRRRSRRRR          RRRRRRRT
+       TRRRSRR      TTSRsRT          TRRsssRRRRsssssssRRRRRRRRTT                      RRRRR
+      RRRRR      T  R TsR            TRsSRTTRRRRssssssssR                               RRRRT
+     SRR        RsssssSsssR      RsssSR           RRsRRsssssSRR                            RRRR
+    TR        RRsssssRRRRRssssssssSRT                  RRRRRTRSR                            RRR
+            TsssRRRRT                                     T                                    RR
+           RsTRT                                                                                TR
+          RST
+
+</PRE></DIV>
+<DIV id=text5><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  TTRR                            RRTR
+                       TTRRRRRRRRRTTSRS                          SsRTRSsRRRRRRRRRRRRRRSRRT
+                 TSRRRRRRRRRRRRRRRRRRR                           RRRRRRRRRSRRRRRRRRRRRSRRRRRRRT
+           TRRRRRRRRRRRSRRRRRRRRRRRSRRRRR                     RRsRRRRRRRSRRRRRT              TTRRR
+        TRRRRRRRRRTTT           TSRRRRRRRRRT               SRRRRRRRRRRRRRT                        T
+     RST                             RRRRRRRRRRRTTT TTRRRRRRsRRRRRRRS
+                                       TRRRRRsssssssRRRRssRRRRRRR
+                                         RRssRRRsssssRRRRRRRRRR
+                                        TssRRRRRsssssssRRRRRT
+                                       TSsR  RRRRssssssssR
+                     TTT  RRRT        Rss       TT RRRRTssRRRR
+                    TRTTRssS       TRssRT             TsRSSTRRT
+                  SRsssssRRssssRRssssR                   STT
+              RRsssssRRRssSR
+             TsssRRssSRRTT
+            RS
+
+</PRE></DIV>
+<DIV id=text6><PRE>
+
+
+
+                  TR
+                  ARR                                                               R
+                  RRR                                                              ART
+                  RRR                                                             TRRR
+                  RRRR                                                            RRRR
+                  RRRRRT                                                         TRRRR
+                  RRRRRA                                                        ARRRAT
+                  TRRRRTT                                                      ARRRRRT
+                   RRRRRTR                                                    TRARRRR
+                   TRRARRTA                                                  ARRRRRRT
+                    ARRRRRRT                                               RTRRRRRRR
+                     RRRRRRRRA                                            TRRRRRRRT
+                     RRARRRRRTA                                         TRRRRRRRRR
+                      RRARARRRRR                                       RRRAARRRRR
+                       RRRRRRRARRR                             TTTR  RRRRRRRRARR
+                        RRRRRRRRRRR TRRA                        ARRRRRRRARRRRRR
+                         ARRRRRRRRRRAT                          TARRRRRRRRRR
+                          ARRRRRRRRRRT                         RRRRRRRRRRRR
+                            ARRRRRRARRRR                     RRRRRRRRRRRR
+                              ARRRRRRRRAR                 TRRRRRRRRRRRRR
+                                 RRRRRRRARRT           ARRRRRRRRRRRARR
+                                     RRRRRRRRRRRTTTRRRRTRRRARRRRRRRR
+                                        ARARRTTTTTTTRRRRRRRRRRRRRR
+                                         RTTTRARRTTTTTTRRRRRRRT
+                                        TTTTR    RTTTTTTTTA TR
+                                      TRTR         TRRRRRTRRRT
+                      TT T TRR       TTTR               T TTARR
+                     TTTRTTTA    TRTTTT
+                 TRTTTTTTTRTTTTTRRT
+                RTTTTTTRRTTTR
+              RTTRRRRRTTT
+             RRTT
+
+</PRE></DIV>
+<DIV id=text7><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                             ARR
+                                                                                          RRR
+     ARRRA                                                                             RRRR
+         RRRA                                                                        ARRR
+              RRR                                                                 RRRR
+                RRRA                                                           ARSRRR
+                  RRRRRA                                                   RRSRRRR
+                     RRRRRSRARRR                              RA     ARRSSRRRRR
+                    AAARSSRRRRRSRA           ARRSSSA         ARRRARRSSSRRRRRRR
+                   RRR  SSRRRRRRRRSRRRRRRRRSSSRRSSSSRRRRRRRRRRRRRRRRRRRRRA
+                 RSSSSSSRRSSSSSRRRRRRRSSSSRRRRRRSSSSSSSRRRRRRRRRRRRRA
+                RSSSSRRSRA       AAAAA     AAAAAA ASSSSRRRSSSSRR
+               RSRRRRA                                      RRRRS
+              SRRA
+              A
+
+</PRE></DIV>
+<DIV id=text8><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                         RRS
+                      RASSSA
+                   RRRA SSSRSRR
+                 SSSSSSSRRRRRRSSSR
+                RSSSSRRR       RRSSRR
+              RSSRRRA             RRSSSSSRRRSSSSSSSRRSSR
+              SSRA                ARRRRRSSSSSSSSSSSSSSRSRRR
+              R           RRASRRRRRRRRRRRRRRRRRRRRSSSSSRRRSRRRARR
+                        ARRRRSRSSSSRRRRRRRRRR       AAAARRRRRRSRRR
+                 ARRRRRRRRRRRRRRRRRRRA                           RRRSSRRAA                   RRRR
+  RRRRRRRRRRRRRRRRRRRRRRRRRRRA                                            AARRRRRRSSSSSRRRRAA
+     AARRRRRRRRRRRAAA
+
+</PRE></DIV>
+<DIV id=text9><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    T
+                     TTRRRSSSST
+                   STRTRsssR
+                 TRsssssRRRssR
+                sssRRssssRRRRssR
+              SsRRssRST     TRsss
+             RRS              RsssR
+                                 ssss
+                                  RRssRS
+                                     TRsssssssssssssRR
+                                        RRRSsssssRRRssssR
+                                       RRRRRRRRssssssRsssssRRTSs
+                                      RRRRRRRRRRRRssssRssssssRRRRT
+                                     RRRSRRRRRRRSR    T RssssssR
+                                    SRRSRRRRRRRRR      TSsssssssSR
+                                   RRRRRSRRRRRR         TRRsssssssSR
+                                TRssRRRRRRRRR               RRssssssST
+                              RRRRRRRSRRRRRR                 RRRssssssR
+                              RRRRRRSRSR                        RRRsssssRT
+                           RRRRRRRRRR                              RRRsssssRT
+                         RRRRRSRRRR                                  SsRRsssssST
+                     TSRRRRRRRT                                          SRRRsssssRT
+                   TRRRRRRRR                                               TRRRRRRsssRRRTTTTTTTTT
+              TRRRSRRRR
+           RRRRTT
+
+</PRE></DIV>
+<DIV id=text10><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        TT
+                      TS TsssssRT
+                      ST TssssS
+                 RssssSRRRRRsssT
+              RRsSRRsssssssRRRsssR
+              sSRRRTT          sssR
+                                TsssT
+                                  sssR
+                                   RssRT
+                                      sssS
+                                       RssssRTT
+                                         TRsssssssSsssssss
+                                         TRRRsssssssRssssssRS
+                                         RRRRRRRRssssRRsssssssRSs
+                                        RSRRRRRSRRRSsssssssssssRRSsS
+                                       RSRRRRRRRRRRRS  SsssssssssT
+                                      RRSRRRRRRRRSR     TRssssssssR
+                                      RRRRRSRRRRRR       TsssssssssR
+                                     TRRRRRRRRRR       RSTssssssssssT
+                                  sssssRRSRRRRR        TSRRsssssssssR
+                                  TTRRRSRSRRR             RRsssssssss
+                                    RRSRSRRR               RRssssssss
+                                    SRRRRRR                TRssssssssT
+                                    SRRRR                   TRsssssssR
+                                   RRRRRR                    RsssssssR
+                                   SRRSR                      RsssssssT
+                                  RsRRR                       SRssssssR
+                                  SRRST                       TRRsssssR
+                                  RRRR                          RssssssT
+                                  RRRR                          TRsssssT
+                                TSRRR                            SRSsssR
+                                RRSR                              TRRsss
+                               RRRR                                TRsss
+                               RRR                                   RRsT
+                               RRT                                    SRRT
+                              T                                         RR
+
+</PRE></DIV>
+<DIV id=text11><PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+                     T TR TTTTTT
+                     T TTTTssssRR
+                   TsssssssRRssRS
+                 SRssSRRRssssssss
+               RSRRsRST       RSsR
+             TT                 RssR
+                                 sssS
+                                  RssT
+                                   RssR
+                                     sssR
+                                      RssssS
+                                        RsssssSSRR
+                                          TRsssssssRsssRRssRR
+                                          RRRsssssssRsssssssssRR
+                                         RRRRRRRRsssssssssssssssRRRS
+                                        RRRRRRRRSRRRSsRssssssssssRR
+                                        RRRRRRRRSRRRRRTRssssssssssRT
+                                       TSRRRRRRRRRRSRR  Rsssssssssss
+                                       RSRRRRRRRRRRSR   Tsssssssssss
+                                      TRRsRRRRRRRRR      sssssssssssS
+                                      SRsRRSRRSSRR     SssssssssssssR
+                                   RRTSsRRRRRRRRS      TRsssssssssssR
+                                    RTsRRRRRRRR          RssssssssssR
+                                     TsRRRSRSR           RssssssssssR
+                                     TsRSRRR             TssssssssssT
+                                     TsRRRRR             Tssssssssss
+                                     RRRRRRT             Rssssssssss
+                                     RRRSRT              RsssssssssR
+                                     RRRRR               RsssssssssT
+                                     RRRRT               sssssssssT
+                                     RRRR               TssssssssS
+                                     TsRR               RsssssssR
+                                     TsRT              TsssssssR
+                                     TsR               RssssssR
+                                      RR              Tssssss
+                                      RR              RssssRR
+                                      TR              RssR
+                                       R              ssR
+                                                      RR
+
+
+</PRE></DIV></BODY></HTML>

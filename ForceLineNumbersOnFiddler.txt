@@ -1,0 +1,5 @@
+
+
+Open Fiddler ScriptEditor
+Line Numbers are a configuration item under View - Editor Configuration
+
