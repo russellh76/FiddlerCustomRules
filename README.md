@@ -45,7 +45,7 @@ No configuration needed, enabled on initial configuration of Fiddler.
 ##  Shorthand Column
 Logic is called from _OnBeforeRequest_, compresses a version of each UI Post into the Comments column for ease of use.</br>
 The function doing the work is _DiscoRequestMsgType_.</br>
-This function includes logic for decrypting beacon POSTs which can be disabled (it modifies the POST minimally)
+This function includes logic for decrypting beacon POSTs which can be disabled (it modifies the POST minimally).
 
 ##  Cookie Hardcode
 Hardcode a session ID that overwrites the value used by the browser.</br>
