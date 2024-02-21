@@ -10,25 +10,25 @@ Add your domain to the if in the OnBeforeResponse function and comment in/out th
 
 ##  Toolset Identification
 This works with the Comments column (and color highlighting).  No configuration needed.
-Function list currently is:<br>
+Function list currently is:</br>
 highlightDiscoverResponse</br>
-highlightUtagResponse
-highlightQualtricsResponse
-highlightQuantumMetricAnalyticsResponse
-highlightDynatraceResponse
-highlightCoreMetricsAnalyticsResponse
-highlightForeseeAnalyticsResponse
-highlightGoogleAnalyticsResponse
-highlightGoogleTagManagerResponse
-highlightFullStoryResponse
-highlightUserReplayAnalyticsResponse
-highlightTealeafSaaSResponse
-highlightTealeafOnPremResponse
-highlightDummyTargetResponse
-highlightDiscoverResponse
-highlightClickTaleResponse	
-highlightGlassBoxResponse
-highlightSnowPlowResponse
+highlightUtagResponse</br>
+highlightQualtricsResponse</br>
+highlightQuantumMetricAnalyticsResponse</br>
+highlightDynatraceResponse</br>
+highlightCoreMetricsAnalyticsResponse</br>
+highlightForeseeAnalyticsResponse</br>
+highlightGoogleAnalyticsResponse</br>
+highlightGoogleTagManagerResponse</br>
+highlightFullStoryResponse</br>
+highlightUserReplayAnalyticsResponse</br>
+highlightTealeafSaaSResponse</br>
+highlightTealeafOnPremResponse</br>
+highlightDummyTargetResponse</br>
+highlightDiscoverResponse</br>
+highlightClickTaleResponse</br>
+highlightGlassBoxResponse</br>
+highlightSnowPlowResponse</br>
 
 
 ##  CORS (and other header) hacking
