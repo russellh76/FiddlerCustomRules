@@ -58,8 +58,6 @@ Logic is presently wholly contained in the _OnBeforeRequest_ function.
 ##  Target page change
 Redirect POSTS to a different target page domain/url.
 
-##  Worker Hack
-
 ##  Impersonate Tealeaf Headers
 Changes Discover headers over to corresponding Tealeaf headers.</br>
 The function is _impersonateTealeafRequest_.
