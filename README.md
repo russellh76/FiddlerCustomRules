@@ -1,4 +1,4 @@
-# CustomRules.js
+### CustomRules.js
 Initial upload of Fiddler Custom Rules set.  There's a lot here already.  
 
 ## Library Injection
@@ -10,7 +10,7 @@ Initial upload of Fiddler Custom Rules set.  There's a lot here already.
 ## Worker Hack
 ## SessionID Column
 ## Impersonate Tealeaf Headers
-Impersonate Discover Headers
-Shorthand Column
-Cookie Hardcode
-Cross Domain Sessionization.
+## Impersonate Discover Headers
+## Shorthand Column
+## Cookie Hardcode
+## Cross Domain Sessionization.
