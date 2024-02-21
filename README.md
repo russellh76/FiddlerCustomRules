@@ -10,8 +10,8 @@ Add your domain to the if in the OnBeforeResponse function and comment in/out th
 
 ##  Toolset Identification
 This works with the Comments column (and color highlighting).  No configuration needed.
-Function list currently is:
-highlightDiscoverResponse
+Function list currently is:<br>
+highlightDiscoverResponse</br>
 highlightUtagResponse
 highlightQualtricsResponse
 highlightQuantumMetricAnalyticsResponse
