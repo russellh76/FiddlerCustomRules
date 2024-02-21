@@ -1,7 +1,7 @@
 # CustomRules.js
 
 ## Library Injection
-Add your domain to the if in the OnBeforeResponse function to add the reference to the javascript library.  AutoResponder may be needed to serve up the file.
+Add your domain to the if in the OnBeforeResonse function to add the reference to the javascript library.  AutoResponder may be needed to serve up the file depending on case specifics.
 
 
 ##  Static Content Capture
@@ -18,34 +18,28 @@ At the bottom of the OnBeforeResponse function set the string for the desired ha
 
 ##  SessionID Injection
 This is code for adding a sessionID argument for GETs of the target page.  Aiding in testing of Sessionization configuration.
-
+The function is called in OnBeforeRequest and the function name is addSessionIDtoTargetGETonRequest.
 
 ##  Beacon Hack
 Modification of headers to work around a (now closed) Beacon support issue.
 
-
 ##  Worker Hack
-
 
 ##  SessionID Column
 No configuration needed, enabled on initial configuration of Fiddler.
 
-
 ##  Impersonate Tealeaf Headers
 Changes Discover headers over to corresponding Tealeaf headers.
-
 
 ##  Impersonate Discover Headers
 Changes Telead headers over to corresponding Discover headers.
 
-
 ##  Shorthand Column
-Logic is called from OnBeforeResponse, compresses a version of each UI Post into the Comments column for ease of use.
+Logic is called from OnBeforeRequest, compresses a version of each UI Post into the Comments column for ease of use.
 The function doing the work is "DiscoRequestMsgType".
 
 ##  Cookie Hardcode
 Hardcode a session ID that overwrites the value used by the browser.
-
 
 ##  Cross Domain Sessionization.
 Configure IFs for the relevant domains such that sessions will stitch across domain.
