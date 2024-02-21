@@ -55,7 +55,7 @@ Logic is presently wholly contained in the _OnBeforeRequest_ function.
 Configure IFs for the relevant domains such that sessions will stitch across domain.</br>
 Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
-##  Target page chang
+##  Target page change
 Redirect POSTS to a different target page domain/url.
 
 ##  Worker Hack
