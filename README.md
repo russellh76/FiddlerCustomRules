@@ -35,6 +35,7 @@ highlightSnowPlowResponse</br>
 
 ##  CORS (and other header) hacking
 At the bottom of the OnBeforeResponse function set the string for the desired hack to be applied.
+The function is called responseHack.
 
 
 ##  SessionID Injection
