@@ -1,6 +1,4 @@
 # CustomRules.js
-Initial upload of Fiddler Custom Rules set.  There's a lot here already.  
-
 
 ## Library Injection
 Add your domain to the if in the OnBeforeResponse function to add the reference to the javascript library.  AutoResponder may be needed to serve up the file.
@@ -43,7 +41,7 @@ Changes Telead headers over to corresponding Discover headers.
 
 ##  Shorthand Column
 Logic is called from OnBeforeResponse, compresses a version of each UI Post into the Comments column for ease of use.
-
+The function doing the work is "DiscoRequestMsgType".
 
 ##  Cookie Hardcode
 Hardcode a session ID that overwrites the value used by the browser.
