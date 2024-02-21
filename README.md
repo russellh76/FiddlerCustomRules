@@ -1,12 +1,12 @@
 # CustomRules.js
 
 ## Library Injection
-Add your domain to the if in the OnBeforeResonse function to add the reference to the javascript library.</br>
+Add your domain to the if in the _OnBeforeResonse_ function to add the reference to the javascript library.</br>
 AutoResponder may be needed to serve up the file depending on case specifics.</br>
 The function is called _injectDiscoJSintoHTML_.
 
 ##  Static Content Capture
-Add your domain to the if in the OnBeforeResponse function and comment in/out the response types desired.</br>
+Add your domain to the if in the _OnBeforeResponse_ function and comment in/out the response types desired.</br>
 The function is called _SaveStaticContentOnBeforeResponse_.
 
 
@@ -35,13 +35,13 @@ _highlightSnowPlowResponse_</br>
 
 
 ##  CORS (and other header) hacking
-At the bottom of the OnBeforeResponse function set the string for the desired hack to be applied.</br>
+At the bottom of the _OnBeforeResponse_ function set the string for the desired hack to be applied.</br>
 The function is called _responseHack_.
 
 
 ##  SessionID Injection
 This is code for adding a sessionID argument for GETs of the target page.  Aiding in testing of Sessionization configuration.</br>
-The function is called in OnBeforeRequest and the function name is _addSessionIDtoTargetGETonRequest_.
+The function is called in _OnBeforeRequest_ and the function name is _addSessionIDtoTargetGETonRequest_.
 
 ##  Beacon Hack
 Modification of headers to work around a (now closed) Beacon support issue.
@@ -60,20 +60,20 @@ Changes Telead headers over to corresponding Discover headers.</br>
 The function is _impersonateDiscoverRequest_.
 
 ##  Shorthand Column
-Logic is called from OnBeforeRequest, compresses a version of each UI Post into the Comments column for ease of use.</br>
+Logic is called from _OnBeforeRequest_, compresses a version of each UI Post into the Comments column for ease of use.</br>
 The function doing the work is _DiscoRequestMsgType_.
 
 ##  Cookie Hardcode
 Hardcode a session ID that overwrites the value used by the browser.</br>
-Logic is presently wholly contained in the OnBeforeRequest function.
+Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
 ##  Cross Domain Sessionization.
 Configure IFs for the relevant domains such that sessions will stitch across domain.</br>
-Logic is presently wholly contained in the OnBeforeRequest function.
+Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
 ## Reverse Proxy configuration
 Handy for redirecting an existing POST to a different target page/domain.</br>
-Logic is presently wholly contained in the OnBeforeRequest function.
+Logic is presently wholly contained in the _OnBeforeRequest_ function.
 
 
 
