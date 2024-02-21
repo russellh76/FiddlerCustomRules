@@ -9,7 +9,6 @@ The function is called _injectDiscoJSintoHTML_.
 Add your domain to the if in the _OnBeforeResponse_ function and comment in/out the response types desired.</br>
 The function is called _SaveStaticContentOnBeforeResponse_.
 
-
 ##  Toolset Identification
 This works with the Comments column (and color highlighting).  No configuration needed.</br>
 Function list currently is:</br>
@@ -33,18 +32,17 @@ _highlightClickTaleResponse_</br>
 _highlightGlassBoxResponse_</br>
 _highlightSnowPlowResponse_</br>
 
-
 ##  CORS (and other header) hacking
 At the bottom of the _OnBeforeResponse_ function set the string for the desired hack to be applied.</br>
 The function is called _responseHack_.
-
 
 ##  SessionID Injection
 This is code for adding a sessionID argument for GETs of the target page.  Aiding in testing of Sessionization configuration.</br>
 The function is called in _OnBeforeRequest_ and the function name is _addSessionIDtoTargetGETonRequest_.
 
 ##  Beacon Hack
-Modification of headers to work around a (now closed) Beacon support issue.
+Modification of headers to work around a (now closed) Beacon support issue.</br>
+The function is called _DiscoBeaconFix_.
 
 ##  Worker Hack
 
