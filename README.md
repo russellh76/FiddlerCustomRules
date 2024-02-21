@@ -30,9 +30,11 @@ No configuration needed, enabled on initial configuration of Fiddler.
 
 ##  Impersonate Tealeaf Headers
 Changes Discover headers over to corresponding Tealeaf headers.
+The function is impersonateTealeafRequest.
 
 ##  Impersonate Discover Headers
 Changes Telead headers over to corresponding Discover headers.
+The function is impersonateDiscoverRequest.
 
 ##  Shorthand Column
 Logic is called from OnBeforeRequest, compresses a version of each UI Post into the Comments column for ease of use.
