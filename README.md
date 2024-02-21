@@ -1,8 +1,9 @@
 # CustomRules.js
 
 ## Library Injection
-Add your domain to the if in the OnBeforeResonse function to add the reference to the javascript library.  AutoResponder may be needed to serve up the file depending on case specifics.
-
+Add your domain to the if in the OnBeforeResonse function to add the reference to the javascript library.  
+AutoResponder may be needed to serve up the file depending on case specifics.
+The function is called injectDiscoJSintoHTML.
 
 ##  Static Content Capture
 Add your domain to the if in the OnBeforeResponse function and comment in/out the response types desired.
