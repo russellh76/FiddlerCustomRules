@@ -40,11 +40,15 @@ The function doing the work is "DiscoRequestMsgType".
 
 ##  Cookie Hardcode
 Hardcode a session ID that overwrites the value used by the browser.
+Logic is presently wholly contained in the OnBeforeRequest function.
 
 ##  Cross Domain Sessionization.
 Configure IFs for the relevant domains such that sessions will stitch across domain.
+Logic is presently wholly contained in the OnBeforeRequest function.
 
-
+## Reverse Proxy configuration
+Handy for redirecting an existing POST to a different target page/domain.
+Logic is presently wholly contained in the OnBeforeRequest function.
 
 
 
