@@ -1,31 +1,31 @@
-## CustomRules.js
+# CustomRules.js
 Initial upload of Fiddler Custom Rules set.  There's a lot here already.  
 
-# Library Injection
+### Library Injection
 
-# Static Content Capture
+###  Static Content Capture
 
-# Toolset Identification
+###  Toolset Identification
 
-# CORS (and other header) hacking
+###  CORS (and other header) hacking
 
-# SessionID Injection
+###  SessionID Injection
 
-# Beacon Hack
+###  Beacon Hack
 
-# Worker Hack
+###  Worker Hack
 
-# SessionID Column
+###  SessionID Column
 
-# Impersonate Tealeaf Headers
+###  Impersonate Tealeaf Headers
 
-# Impersonate Discover Headers
+###  Impersonate Discover Headers
 
-# Shorthand Column
+###  Shorthand Column
 
-# Cookie Hardcode
+###  Cookie Hardcode
 
-# Cross Domain Sessionization.
+###  Cross Domain Sessionization.
 
 
 
