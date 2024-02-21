@@ -1,7 +1,7 @@
-#CustomRules.js
+##CustomRules.js
 Initial upload of Fiddler Custom Rules set.  There's a lot here already.  
 
-Library Injection
+##Library Injection
 Static Content Capture
 Toolset Identification
 CORS (and other header) hacking
