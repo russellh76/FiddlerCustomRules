@@ -6,6 +6,7 @@ Add your domain to the if in the OnBeforeResonse function to add the reference t
 
 ##  Static Content Capture
 Add your domain to the if in the OnBeforeResponse function and comment in/out the response types desired.
+The function is called SaveStaticContentOnBeforeResponse.
 
 
 ##  Toolset Identification
